@@ -1,3 +1,41 @@
-[gd_scene format=3 uid="uid://c750xv36p3co5"]
+[gd_scene load_steps=7 format=3 uid="uid://c750xv36p3co5"]
+
+[ext_resource type="Script" path="res://scripts/nivel_1.cs" id="1_1snro"]
+[ext_resource type="Texture2D" uid="uid://d1w4tq42jwdu3" path="res://sprites/nivel-1.png" id="2_u5gjf"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ouxmf"]
+a = Vector2(16, 15)
+b = Vector2(1264, 15)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_4p6mj"]
+a = Vector2(15, 705)
+b = Vector2(1265, 705)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_uwcrn"]
+a = Vector2(15, 15)
+b = Vector2(15, 706)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_aswu5"]
+a = Vector2(1265, 14)
+b = Vector2(1265, 706)
 
 [node name="Nivel1" type="Node2D"]
+script = ExtResource("1_1snro")
+
+[node name="Escenario" type="StaticBody2D" parent="."]
+
+[node name="ColisionTop" type="CollisionShape2D" parent="Escenario"]
+shape = SubResource("SegmentShape2D_ouxmf")
+
+[node name="ColisionBot" type="CollisionShape2D" parent="Escenario"]
+shape = SubResource("SegmentShape2D_4p6mj")
+
+[node name="ColisionLeft" type="CollisionShape2D" parent="Escenario"]
+shape = SubResource("SegmentShape2D_uwcrn")
+
+[node name="ColisionRight" type="CollisionShape2D" parent="Escenario"]
+shape = SubResource("SegmentShape2D_aswu5")
+
+[node name="SpriteEscenario" type="Sprite2D" parent="Escenario"]
+position = Vector2(640, 360)
+texture = ExtResource("2_u5gjf")
