@@ -18,7 +18,7 @@ public partial class menu_principal : Control
 
 	private void OnBotonJugarPressed()
 	{
-		GetTree().ChangeSceneToFile("res://escenas/nivel_1");
+		GetTree().ChangeSceneToFile("res://escenas/nivel_1.tscn");
 	}
 
 	private void OnBotonSalirPressed()
