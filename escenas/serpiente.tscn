@@ -18,4 +18,3 @@ shape = SubResource("RectangleShape2D_0nwm7")
 [node name="Sprite" type="Sprite2D" parent="Cuerpo"]
 position = Vector2(8, 8)
 texture = ExtResource("1_1lf8v")
-centered = false
