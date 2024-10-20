@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://n8tnaeu1n6hf"]
+
+[ext_resource type="Texture2D" uid="uid://ck14wy2ntpqrk" path="res://sprites/jugador.png" id="1_1lf8v"]
+[ext_resource type="Script" path="res://scripts/serpiente.cs" id="1_jnq7y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0nwm7"]
+size = Vector2(14, 14)
+
+[node name="Serpiente" type="Node2D"]
+script = ExtResource("1_jnq7y")
+
+[node name="Cuerpo" type="Area2D" parent="."]
+
+[node name="Colision" type="CollisionShape2D" parent="Cuerpo"]
+shape = SubResource("RectangleShape2D_0nwm7")
+
+[node name="Sprite" type="Sprite2D" parent="Cuerpo"]
+texture = ExtResource("1_1lf8v")

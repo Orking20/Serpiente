@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c750xv36p3co5"]
+[gd_scene load_steps=8 format=3 uid="uid://c750xv36p3co5"]
 
 [ext_resource type="Script" path="res://scripts/nivel_1.cs" id="1_1snro"]
 [ext_resource type="Texture2D" uid="uid://d1w4tq42jwdu3" path="res://sprites/nivel-1.png" id="2_u5gjf"]
+[ext_resource type="PackedScene" uid="uid://n8tnaeu1n6hf" path="res://escenas/serpiente.tscn" id="3_ium5x"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ouxmf"]
 a = Vector2(16, 15)
@@ -39,3 +40,6 @@ shape = SubResource("SegmentShape2D_aswu5")
 [node name="SpriteEscenario" type="Sprite2D" parent="Escenario"]
 position = Vector2(640, 360)
 texture = ExtResource("2_u5gjf")
+
+[node name="Serpiente" parent="." instance=ExtResource("3_ium5x")]
+position = Vector2(66, 64)
