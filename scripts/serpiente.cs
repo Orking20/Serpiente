@@ -11,6 +11,9 @@ public partial class serpiente : Node2D
 	private float tiempoMovimiento; // Cuando esta variable sea más grande que el MoveDelay se mueve la serpiente
 	private const int CellSize = 16;
 	private const float MoveDelay = 0.1f;
+	private Area2D areaColision; // Area
+	private Label gameOver;
+	private Button btnReiniciar;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -20,13 +23,21 @@ public partial class serpiente : Node2D
 		this.tiempoMovimiento = 0f;
 		this.segmentosSprite = new List<SerpienteSegmentos>();
 		this.texturaSegmentos = GD.Load<Texture2D>("res://sprites/jugador.png");
+		
+		this.areaColision = GetNode<Area2D>("Cuerpo");
+		this.gameOver = GetNode<Label>("/root/Nivel1/GameOver");
+		this.btnReiniciar = GetNode<Button>("/root/Nivel1/BtnReiniciar");
+		this.gameOver.Hide();
+		this.btnReiniciar.Hide();
+
+		this.btnReiniciar.Pressed += OnBotonReiniciarPressed;
+
+		// Conectar la señal de colisión
+        this.areaColision.BodyEntered += OnBodyEntered;
 
 		Vector2 screenSize = GetViewport().GetVisibleRect().Size;
-		GD.Print("Pantalla: " + screenSize);
-		GD.Print("Posicion inicial: " + screenSize / 2);
 		Vector2 startPosition = screenSize / 2;
 
-		//this.viboraSegmentos.Add(new Vector2(this.Position.X, this.Position.Y));
 		for (int i = 0; i < 3; i++)
 		{
 			Vector2 posicionInicial = new Vector2(startPosition.X - (i * CellSize), startPosition.Y);
@@ -57,6 +68,9 @@ public partial class serpiente : Node2D
         {
             this.segmentosSprite[i].Position = this.viboraSegmentos[i];
         }
+
+		// Actualizar la posición del área de colisión
+        this.areaColision.Position = new Vector2(this.viboraSegmentos[0].X - 8, this.viboraSegmentos[0].Y - 8);
 	}
 
 	private void AgregarSegmento(Vector2 posicion)
@@ -67,6 +81,21 @@ public partial class serpiente : Node2D
         segmento.Position = posicion;
         AddChild(segmento);
         this.segmentosSprite.Add(segmento);
+    }
+
+	private void OnBodyEntered(Node2D body)
+    {
+        if (body is StaticBody2D)  // Si choca con una pared
+        {
+            GameOver();
+        }
+    }
+
+	private void GameOver()
+    {
+		this.gameOver.Show();
+		this.btnReiniciar.Show();
+		GetTree().Paused = true;
     }
 
 	private Vector2 GetDirectionVector()
@@ -114,6 +143,12 @@ public partial class serpiente : Node2D
 		{
 			this.direccionActual = Direccion.Down;
 		}
+	}
+
+	private void OnBotonReiniciarPressed()
+	{
+		GetTree().Paused = false;
+		GetTree().ChangeSceneToFile("res://escenas/menu_principal.tscn");
 	}
 }
 

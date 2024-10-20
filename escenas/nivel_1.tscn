@@ -43,5 +43,23 @@ position = Vector2(648, 360)
 scale = Vector2(1.0125, 1)
 texture = ExtResource("2_u5gjf")
 
+[node name="GameOver" type="Label" parent="."]
+offset_left = 240.0
+offset_top = 240.0
+offset_right = 1053.0
+offset_bottom = 445.0
+theme_override_colors/font_color = Color(0.658911, 1.9132e-06, 5.29438e-07, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 150
+text = "Game Over"
+
 [node name="Serpiente" parent="." instance=ExtResource("3_ium5x")]
 position = Vector2(-16, -16)
+
+[node name="BtnReiniciar" type="Button" parent="."]
+process_mode = 3
+offset_left = 480.0
+offset_top = 512.0
+offset_right = 816.0
+offset_bottom = 624.0
+text = "Menu principal"
