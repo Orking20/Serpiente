@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 public partial class Serpiente : Node2D
 {
-	private List<Vector2> viboraSegmentos;
-	private List<SerpienteSegmentos> segmentosSprite;
-	private Texture2D texturaSegmentos;
+	private List<Vector2> viboraSegmentos; // Guarda las posiciones
+	private List<SerpienteSegmentos> segmentosSprite; // Guarda los sprites vizuales
+	private Texture2D texturaSegmentos; // Convierte la textura en el sprite que se va a ver en pantalla
 	private Direccion direccionActual;
 	private float tiempoMovimiento;
 	private const int CellSize = 16;
