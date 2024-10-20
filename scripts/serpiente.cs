@@ -8,9 +8,9 @@ public partial class Serpiente : Node2D
 	private List<SerpienteSegmentos> segmentosSprite; // Guarda los sprites vizuales
 	private Texture2D texturaSegmentos; // Convierte la textura en el sprite que se va a ver en pantalla
 	private Direccion direccionActual;
-	private float tiempoMovimiento;
+	private float tiempoMovimiento; // Cuando esta variable sea más grande que el MoveDelay se mueve la serpiente
 	private const int CellSize = 16;
-	private const float MoveDelay = 0.2f;
+	private const float MoveDelay = 0.1f;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -22,6 +22,8 @@ public partial class Serpiente : Node2D
 		this.texturaSegmentos = GD.Load<Texture2D>("res://sprites/jugador.png");
 
 		Vector2 screenSize = GetViewport().GetVisibleRect().Size;
+		GD.Print("Pantalla: " + screenSize);
+		GD.Print("Posicion inicial: " + screenSize / 2);
 		Vector2 startPosition = screenSize / 2;
 
 		//this.viboraSegmentos.Add(new Vector2(this.Position.X, this.Position.Y));

@@ -6,11 +6,11 @@
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ouxmf"]
 a = Vector2(16, 15)
-b = Vector2(1264, 15)
+b = Vector2(1281, 15)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_4p6mj"]
 a = Vector2(15, 705)
-b = Vector2(1265, 705)
+b = Vector2(1282, 705)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_uwcrn"]
 a = Vector2(15, 15)
@@ -35,11 +35,13 @@ shape = SubResource("SegmentShape2D_4p6mj")
 shape = SubResource("SegmentShape2D_uwcrn")
 
 [node name="ColisionRight" type="CollisionShape2D" parent="Escenario"]
+position = Vector2(16, 0)
 shape = SubResource("SegmentShape2D_aswu5")
 
 [node name="SpriteEscenario" type="Sprite2D" parent="Escenario"]
-position = Vector2(640, 360)
+position = Vector2(648, 360)
+scale = Vector2(1.0125, 1)
 texture = ExtResource("2_u5gjf")
 
 [node name="Serpiente" parent="." instance=ExtResource("3_ium5x")]
-position = Vector2(-11, -10)
+position = Vector2(-32, -32)

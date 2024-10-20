@@ -12,7 +12,9 @@ script = ExtResource("1_f854q")
 [node name="Cuerpo" type="Area2D" parent="."]
 
 [node name="Colision" type="CollisionShape2D" parent="Cuerpo"]
+position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_0nwm7")
 
 [node name="Sprite" type="Sprite2D" parent="Cuerpo"]
 texture = ExtResource("1_1lf8v")
+centered = false
