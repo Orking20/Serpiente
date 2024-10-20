@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class Serpiente : Node2D
+public partial class serpiente : Node2D
 {
 	private List<Vector2> viboraSegmentos; // Guarda las posiciones
 	private List<SerpienteSegmentos> segmentosSprite; // Guarda los sprites vizuales
@@ -10,7 +10,7 @@ public partial class Serpiente : Node2D
 	private Direccion direccionActual;
 	private float tiempoMovimiento;
 	private const int CellSize = 16;
-	private const float MoveDelay = 0.2f;
+	private const float MoveDelay = 0.1f;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
