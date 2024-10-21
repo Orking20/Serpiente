@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Comida : Area2D
+public partial class Comida : StaticBody2D
 {
 	private int posX;
 	private int posY;
@@ -12,9 +12,6 @@ public partial class Comida : Area2D
 	{
 		this.posX = new Random().Next(16, 1280);
 		this.posY = new Random().Next(16, 704);
-
-		GD.Print("Pos X: ", this.posX);
-		GD.Print("Pos Y: ", this.posY);
 
 		this.Position = acomodarPosicionCuadricula(this.posX, this.posY);
 	}

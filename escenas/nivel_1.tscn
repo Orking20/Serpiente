@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c750xv36p3co5"]
+[gd_scene load_steps=8 format=3 uid="uid://c750xv36p3co5"]
 
 [ext_resource type="Script" path="res://scripts/nivel_1.cs" id="1_1snro"]
 [ext_resource type="Texture2D" uid="uid://d1w4tq42jwdu3" path="res://sprites/nivel-1.png" id="2_u5gjf"]
 [ext_resource type="PackedScene" uid="uid://n8tnaeu1n6hf" path="res://escenas/serpiente.tscn" id="3_ium5x"]
-[ext_resource type="PackedScene" uid="uid://di1gvwftrh6v0" path="res://escenas/comida.tscn" id="4_82455"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ouxmf"]
 a = Vector2(16, 15)
@@ -24,7 +23,7 @@ b = Vector2(1265, 706)
 [node name="Nivel1" type="Node2D"]
 script = ExtResource("1_1snro")
 
-[node name="Escenario" type="StaticBody2D" parent="."]
+[node name="Escenario" type="StaticBody2D" parent="." groups=["Escenario"]]
 
 [node name="ColisionTop" type="CollisionShape2D" parent="Escenario"]
 shape = SubResource("SegmentShape2D_ouxmf")
@@ -64,6 +63,3 @@ offset_top = 512.0
 offset_right = 816.0
 offset_bottom = 624.0
 text = "Menu principal"
-
-[node name="Comida" parent="." instance=ExtResource("4_82455")]
-position = Vector2(0, -16)

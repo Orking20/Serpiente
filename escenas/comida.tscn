@@ -3,15 +3,15 @@
 [ext_resource type="Script" path="res://scripts/Comida.cs" id="1_pjfjl"]
 [ext_resource type="Texture2D" uid="uid://5v6gaxsy0xlf" path="res://sprites/comida-chica.png" id="1_po7ft"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pncmb"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_114fu"]
 size = Vector2(14, 14)
 
-[node name="Comida" type="Area2D"]
+[node name="Comida" type="StaticBody2D" groups=["Comida"]]
 script = ExtResource("1_pjfjl")
 
 [node name="Colision" type="CollisionShape2D" parent="."]
 position = Vector2(8, 8)
-shape = SubResource("RectangleShape2D_pncmb")
+shape = SubResource("RectangleShape2D_114fu")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(8, 8)

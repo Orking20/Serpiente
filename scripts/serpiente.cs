@@ -14,6 +14,9 @@ public partial class serpiente : Node2D
 	private Area2D areaColision; // Area
 	private Label gameOver;
 	private Button btnReiniciar;
+	private nivel_1 nivel;
+	[Signal]
+	public delegate void ComidaRecolectadaEventHandler();
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -29,6 +32,8 @@ public partial class serpiente : Node2D
 		this.btnReiniciar = GetNode<Button>("/root/Nivel1/BtnReiniciar");
 		this.gameOver.Hide();
 		this.btnReiniciar.Hide();
+
+		this.nivel = GetParent<nivel_1>();
 
 		this.btnReiniciar.Pressed += OnBotonReiniciarPressed;
 
@@ -85,10 +90,14 @@ public partial class serpiente : Node2D
 
 	private void OnBodyEntered(Node2D body)
     {
-        if (body is StaticBody2D)  // Si choca con una pared
-        {
-            GameOver();
-        }
+		if (body.IsInGroup("comida"))
+		{
+			Comer();
+		}
+		else if (body.IsInGroup("Escenario"))
+		{
+			GameOver();
+		}
     }
 
 	private void GameOver()
@@ -97,6 +106,14 @@ public partial class serpiente : Node2D
 		this.btnReiniciar.Show();
 		GetTree().Paused = true;
     }
+
+	private void Comer()
+	{
+		EmitSignal(SignalName.ComidaRecolectada);
+
+		Vector2 nuevaPosicion = new Vector2(this.Position.X, this.Position.Y);
+		AgregarSegmento(nuevaPosicion);
+	}
 
 	private Vector2 GetDirectionVector()
 	{
