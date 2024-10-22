@@ -5,7 +5,6 @@ public partial class Comida : StaticBody2D
 {
 	private int posX;
 	private int posY;
-	private const int CellSize = 16;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

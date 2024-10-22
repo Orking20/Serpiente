@@ -11,7 +11,7 @@ public partial class serpiente : Node2D
 	private float tiempoMovimiento; // Cuando esta variable sea más grande que el MoveDelay se mueve la serpiente
 	private const int CellSize = 16;
 	private const float MoveDelay = 0.1f;
-	private Area2D areaColision; // Area
+	private Area2D areaColision;
 	private Label gameOver;
 	private Button btnReiniciar;
 	private nivel_1 nivel;
@@ -28,6 +28,8 @@ public partial class serpiente : Node2D
 		this.texturaSegmentos = GD.Load<Texture2D>("res://sprites/jugador.png");
 		
 		this.areaColision = GetNode<Area2D>("Cuerpo");
+		this.areaColision.Monitorable = true;
+        this.areaColision.Monitoring = true;
 		this.gameOver = GetNode<Label>("/root/Nivel1/GameOver");
 		this.btnReiniciar = GetNode<Button>("/root/Nivel1/BtnReiniciar");
 		this.gameOver.Hide();
@@ -38,7 +40,8 @@ public partial class serpiente : Node2D
 		this.btnReiniciar.Pressed += OnBotonReiniciarPressed;
 
 		// Conectar la señal de colisión
-        this.areaColision.BodyEntered += OnBodyEntered;
+        this.areaColision.BodyEntered += OnBodyEntered; // Chequea colisiones de comida y escenario
+		this.areaColision.AreaEntered += OnBodyEntered; // Chequea colisiones de su propio cuerpo
 
 		Vector2 screenSize = GetViewport().GetVisibleRect().Size;
 		Vector2 startPosition = screenSize / 2;
@@ -84,6 +87,7 @@ public partial class serpiente : Node2D
         
         var segmento = new SerpienteSegmentos(this.texturaSegmentos);
         segmento.Position = posicion;
+		segmento.AddToGroup("serpiente");
         AddChild(segmento);
         this.segmentosSprite.Add(segmento);
     }
@@ -98,13 +102,22 @@ public partial class serpiente : Node2D
 		{
 			GameOver();
 		}
+		else if (body is SerpienteSegmentos && body != segmentosSprite[0])
+		{
+			GameOver();
+		}
     }
 
-	private void GameOver()
+	public void GameOver()
     {
 		this.gameOver.Show();
 		this.btnReiniciar.Show();
 		GetTree().Paused = true;
+    }
+
+	private void OnColisionConSegmento()
+    {
+        GameOver();
     }
 
 	private void Comer()
@@ -112,7 +125,7 @@ public partial class serpiente : Node2D
 		EmitSignal(SignalName.ComidaRecolectada);
 
 		Vector2 nuevaPosicion = new Vector2(this.Position.X, this.Position.Y);
-		AgregarSegmento(nuevaPosicion);
+		CallDeferred(nameof(AgregarSegmento), nuevaPosicion);
 	}
 
 	private Vector2 GetDirectionVector()

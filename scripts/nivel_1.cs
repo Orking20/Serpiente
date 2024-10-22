@@ -25,7 +25,6 @@ public partial class nivel_1 : Node2D
 
 	private void OnComidaRecolectada()
 	{
-		GD.Print(this.comidaActual);
 		if (this.comidaActual != null)
 		{
 			this.comidaActual.CallDeferred("queue_free");
