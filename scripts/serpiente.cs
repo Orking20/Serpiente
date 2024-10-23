@@ -8,6 +8,7 @@ public partial class serpiente : Node2D
 	private List<SerpienteSegmentos> segmentosSprite; // Guarda los sprites vizuales
 	private Texture2D texturaSegmentos; // Convierte la textura en el sprite que se va a ver en pantalla
 	private Direccion direccionActual;
+	private Direccion direccionSiguiente;
 	private float tiempoMovimiento; // Cuando esta variable sea más grande que el MoveDelay se mueve la serpiente
 	private const int CellSize = 16;
 	private const float MoveDelay = 0.1f;
@@ -23,6 +24,7 @@ public partial class serpiente : Node2D
 	{
 		this.viboraSegmentos = new List<Vector2>();
 		this.direccionActual = Direccion.Right;
+		this.direccionSiguiente = this.direccionActual;
 		this.tiempoMovimiento = 0f;
 		this.segmentosSprite = new List<SerpienteSegmentos>();
 		this.texturaSegmentos = GD.Load<Texture2D>("res://sprites/jugador.png");
@@ -67,6 +69,8 @@ public partial class serpiente : Node2D
 
 	private void MoveSnake()
 	{
+		this.direccionActual = this.direccionSiguiente;
+
 		Vector2 nuevaPosCabeza = this.viboraSegmentos[0] + GetDirectionVector() * CellSize;
 		this.viboraSegmentos.Insert(0, nuevaPosCabeza);
 		this.viboraSegmentos.RemoveAt(this.viboraSegmentos.Count - 1);
@@ -157,21 +161,24 @@ public partial class serpiente : Node2D
 
 	private void HandleInput()
 	{
-		if (Input.IsActionJustPressed("move_right") && this.direccionActual != Direccion.Left)
+		if (this.direccionActual == this.direccionSiguiente)
 		{
-			this.direccionActual = Direccion.Right;
-		}
-		else if (Input.IsActionJustPressed("move_left") && this.direccionActual != Direccion.Right)
-		{
-			this.direccionActual = Direccion.Left;
-		}
-		else if (Input.IsActionJustPressed("move_up") && this.direccionActual != Direccion.Down)
-		{
-			this.direccionActual = Direccion.Up;
-		}
-		else if (Input.IsActionJustPressed("move_down") && this.direccionActual != Direccion.Up)
-		{
-			this.direccionActual = Direccion.Down;
+			if (Input.IsActionJustPressed("move_right") && this.direccionActual != Direccion.Left)
+			{
+				this.direccionSiguiente = Direccion.Right;
+			}
+			else if (Input.IsActionJustPressed("move_left") && this.direccionActual != Direccion.Right)
+			{
+				this.direccionSiguiente = Direccion.Left;
+			}
+			else if (Input.IsActionJustPressed("move_up") && this.direccionActual != Direccion.Down)
+			{
+				this.direccionSiguiente = Direccion.Up;
+			}
+			else if (Input.IsActionJustPressed("move_down") && this.direccionActual != Direccion.Up)
+			{
+				this.direccionSiguiente = Direccion.Down;
+			}
 		}
 	}
 
