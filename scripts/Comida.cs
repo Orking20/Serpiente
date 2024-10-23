@@ -15,11 +15,6 @@ public partial class Comida : StaticBody2D
 		this.Position = acomodarPosicionCuadricula(this.posX, this.posY);
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
-
 	private Vector2 acomodarPosicionCuadricula(int posX, int posY)
 	{
 		Vector2 posicionCuadrada = new Vector2();

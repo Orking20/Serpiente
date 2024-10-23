@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvs006fev6ggl"
-path="res://.godot/imported/comida-grande.png-9c5afdc595420529b706ad0620c4107e.ctex"
+uid="uid://sod1meaup542"
+path="res://.godot/imported/comida-super.png-d964d7d94b7e045df4eafd882068ee3c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/comida-grande.png"
-dest_files=["res://.godot/imported/comida-grande.png-9c5afdc595420529b706ad0620c4107e.ctex"]
+source_file="res://sprites/comida-super.png"
+dest_files=["res://.godot/imported/comida-super.png-d964d7d94b7e045df4eafd882068ee3c.ctex"]
 
 [params]
 

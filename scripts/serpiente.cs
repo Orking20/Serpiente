@@ -129,6 +129,13 @@ public partial class serpiente : Node2D
 		EmitSignal(SignalName.ComidaRecolectada);
 
 		Vector2 nuevaPosicion = new Vector2(this.Position.X, this.Position.Y);
+		if (this.nivel.tipoComida == nivel_1.Tipo.Grande || this.nivel.tipoComida == nivel_1.Tipo.Super)
+		{
+			for (int i = 1; i < (int)this.nivel.tipoComida; i++)
+			{
+				CallDeferred(nameof(AgregarSegmento), nuevaPosicion);
+			}
+		}
 		CallDeferred(nameof(AgregarSegmento), nuevaPosicion);
 	}
 

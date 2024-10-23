@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://csknyfnjxe6sv"]
+
+[ext_resource type="PackedScene" uid="uid://di1gvwftrh6v0" path="res://escenas/comida.tscn" id="1_osdf0"]
+[ext_resource type="Texture2D" uid="uid://bvs006fev6ggl" path="res://sprites/comida-grande.png" id="2_hcio8"]
+
+[node name="Comida" instance=ExtResource("1_osdf0")]
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource("2_hcio8")
